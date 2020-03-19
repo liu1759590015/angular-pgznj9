@@ -1,8 +1,16 @@
 <h2>Products</h2>
-<diV *ngFor="let product of products" >
-  <h3>
+<diV *ngFor="let product of products ; index as productId" >
+  <a [title]="product.name + ' detils' " [routerLink]="['/products',productId]">
     {{ product.name }}
-  </h3>
+  </a>
+  <p *ngIf="product.description">
+    描述：{{ product.description }}
+  </p>
+  <button (click)="share()">
+    share
+  </button>
+  <app-product-alerts [product]="product" (notify)="onNotify()">
+  </app-product-alerts>
 </diV>
 
 <!-- 
